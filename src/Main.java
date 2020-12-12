@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -31,10 +30,11 @@ public class Main {
                             }
                             Person person = list.searchPerson(listOfInput[1]);
                             person.getLikedSong().addSong(song.trim());
+                            System.out.println(person.getPersonName() + " adlı kişiye " + "'" + song.trim() + "'" + " adlı şarkı eklendi.");
                         } else {
                             System.out.println("First you should create a profile.");
                         }
-                    }else
+                    } else
                         System.out.println("geçersiz değer ya isim ya şarkı girilmeli");
                     break;
                 case "e":// şarkı olmayınca da çalışıyor
@@ -46,8 +46,8 @@ public class Main {
                         }
 
                         list.deleteSong(name, likedSong.trim());
-                        System.out.println(name + " doesn’t like the song " + likedSong + "anymore");
-                    }else
+                        System.out.println(name + " doesn’t like the song " + "'" + likedSong.trim() + "'" + " anymore.");
+                    } else
                         System.out.println("geçersiz değer");
                     break;
                 case "l":
