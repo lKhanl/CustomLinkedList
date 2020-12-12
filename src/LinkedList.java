@@ -5,13 +5,13 @@ public class LinkedList {
     Song headS;
 
     /**
-     * create--> person +
-     * addSong-->song +
-     * delete-->song +
-     * print all person +
-     * print all songs +
-     * print song for a person +
-     * recommended songs +
+     * create--> person
+     * addSong-->song
+     * delete-->song ?
+     * print all person
+     * print all songs
+     * print song for a person
+     * recommended songs ?
      */
 
     public void create(String personName) {
@@ -23,7 +23,7 @@ public class LinkedList {
 
             if (headP == null) {
                 headP = new Person(personName);
-                System.out.println(personName+" adlı kişi oluşturuldu.");
+                System.out.println(personName + " adlı kişi oluşturuldu.");
                 return;
             }
 
@@ -36,7 +36,7 @@ public class LinkedList {
             copyOfHead.next = new_node;
 
         }
-        System.out.println(personName+" adlı kişi oluşturuldu");
+        System.out.println(personName + " adlı kişi oluşturuldu");
     }
 
     public void addSong(String songName) {
@@ -61,22 +61,27 @@ public class LinkedList {
 
     }
 
-    void deleteSong(String personName, String songName) {
+    public void deleteSong(String personName, String songName) {
         Person selectedPerson = searchPerson(personName);
         Song temp = selectedPerson.getLikedSong().headS, prev = null;
-
-        if (temp != null && temp.getSongName().equals(songName)) {
-            headS = temp.next;
+        if (temp == null) {
+            System.out.println("şarkı yok!");
             return;
         }
-        while (temp != null && !temp.getSongName().equals(songName)) {
+        if (temp.getSongName().equals(songName)) {
+            selectedPerson.getLikedSong().headS = null;
+            return;
+        }
+        while (temp != null) {
+            if (temp.getSongName().equals(songName)) {
+                prev.next = temp.next;
+                return;
+            }
             prev = temp;
             temp = temp.next;
         }
-        if (temp == null) return;
 
 
-        prev.next = temp.next;
     }
 
     public void printListAsPersonName() {
