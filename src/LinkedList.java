@@ -194,37 +194,6 @@ public class LinkedList {
 
     }
 
-    private void printTopThree(Map<String, Integer> map) {
-        if (map.isEmpty())
-            System.out.println("There is no song is the environment.");
-        if (map.size() < 3) {
-
-            for (Map.Entry<String, Integer> iterator : map.entrySet()) {
-                System.out.println("The song " + "'" + iterator.getKey() + "'" + " is liked from " + iterator.getValue() + " people.");
-
-            }
-        } else {
-            map.size();
-            int max = 0;
-            int counter = 0;
-            String key = "";
-            while (counter < 3) {
-
-                for (Map.Entry<String, Integer> iterator : map.entrySet()) {
-                    if (iterator.getValue() > max) {
-                        max = iterator.getValue();
-                        key = iterator.getKey();
-                    }
-                }
-                System.out.println("The song " + "'" + key + "'" + " is liked from " + max + " people.");
-                map.remove(key);
-                max = 0;
-                counter++;
-
-            }
-        }
-    }
-
     Person searchPerson(String name) {
         Person temp = headP;
         while (temp != null) {
