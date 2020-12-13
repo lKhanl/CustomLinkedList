@@ -129,7 +129,7 @@ public class LinkedList {
         else {
             Song temp = currentPerson.getLikedSongs().headS;
             int numOfSong = 1;
-            System.out.println("The liked songs for " + "'" + currentPerson + "' :");
+            System.out.println("The liked songs for " + "'" + currentPerson.getPersonName() + "' :");
             while (temp != null) {
                 System.out.println(numOfSong + ". " + temp.getSongName());
                 numOfSong++;
