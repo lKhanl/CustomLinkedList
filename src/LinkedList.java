@@ -32,7 +32,6 @@ public class LinkedList {
     public void addSong(String songName) {
         if (searchSong(songName) != null) {
             System.out.println("This song has already in the list.");
-            return;
         } else {
             Song new_node = new Song(songName);
 
@@ -55,29 +54,32 @@ public class LinkedList {
     }
 
     public void deleteSong(String personName, String songName) {
-        Person selectedPerson = searchPerson(personName);
-        Song temp = selectedPerson.getLikedSongs().headS, prev = null;
-        if (temp == null) {
-            System.out.println("There is no song in the list.");
-            return;
-        }
-        if (temp.getSongName().equalsIgnoreCase(songName)) {
-            selectedPerson.getLikedSongs().headS = null;
-            System.out.println("'" + selectedPerson.getPersonName() + "'" + " doesn’t like the song " + "'" + songName + "'" + " anymore.");
-            return;
-        }
-        while (temp != null) {
-            if (temp.getSongName().equalsIgnoreCase(songName)) {
-                prev.next = temp.next;
-                System.out.println("'" + selectedPerson.getPersonName() + "'" + " doesn’t like the song " + "'" + songName + "'" + " anymore.");
+        if (searchPerson(personName) == null)
+            System.out.println("'" + personName + "'" + " does not exist. First you should create a profile.");
+        else {
+            Person selectedPerson = searchPerson(personName);
+            Song temp = selectedPerson.getLikedSongs().headS, prev = null;
+            if (temp == null) {
+                System.out.println("There is no song in the list.");
                 return;
-            } else
-                System.out.println("The song is not in the list. ");
-            prev = temp;
-            temp = temp.next;
+            }
+            if (temp.getSongName().equalsIgnoreCase(songName)) {
+                selectedPerson.getLikedSongs().headS = null;
+                System.out.println("'" + selectedPerson.getPersonName() + "'" + " does not like the song " + "'" + songName + "'" + " anymore.");
+                return;
+            }
+            while (temp != null) {
+                if (temp.getSongName().equalsIgnoreCase(songName)) {
+                    prev.next = temp.next;
+                    System.out.println("'" + selectedPerson.getPersonName() + "'" + " does not like the song " + "'" + songName + "'" + " anymore.");
+                    return;
+                } else
+                    System.out.println("The song is not in the list. ");
+                prev = temp;
+                temp = temp.next;
+            }
+
         }
-
-
     }
 
     public void printListAsPersonName() {
@@ -94,7 +96,7 @@ public class LinkedList {
         }
     }
 
-    public void printListAsSong() {
+    public void printListAsSongName() {
         if (headP == null)
             System.out.println("There is no person registered.");
         else {
@@ -121,19 +123,23 @@ public class LinkedList {
         }
     }
 
-    public void printSongsForPerson(String name) {
-        Person currentPerson = searchPerson(name);
-
-        if (currentPerson.getLikedSongs().headS == null)
-            System.out.println("There is no song in the list.");
+    public void printSongsForPerson(String personName) {
+        if (searchPerson(personName) == null)
+            System.out.println("'" + personName + "'" + " does not exist. First you should create a profile.");
         else {
-            Song temp = currentPerson.getLikedSongs().headS;
-            int numOfSong = 1;
-            System.out.println("The liked songs for " + "'" + currentPerson.getPersonName() + "' :");
-            while (temp != null) {
-                System.out.println(numOfSong + ". " + temp.getSongName());
-                numOfSong++;
-                temp = temp.next;
+            Person currentPerson = searchPerson(personName);
+
+            if (currentPerson.getLikedSongs().headS == null)
+                System.out.println("There is no song in the list.");
+            else {
+                Song temp = currentPerson.getLikedSongs().headS;
+                int numOfSong = 1;
+                System.out.println("The liked songs for " + "'" + currentPerson.getPersonName() + "' :");
+                while (temp != null) {
+                    System.out.println(numOfSong + ". " + temp.getSongName());
+                    numOfSong++;
+                    temp = temp.next;
+                }
             }
         }
     }
