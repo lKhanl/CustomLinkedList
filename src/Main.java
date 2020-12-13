@@ -29,7 +29,7 @@ public class Main {
                                 song += listOfInput[j] + " ";
                             }
                             Person person = list.searchPerson(listOfInput[1]);
-                            person.getLikedSong().addSong(song.trim());
+                            person.getLikedSongs().addSong(song.trim());
 
                         } else {
                             System.out.println("First you should create a profile.");

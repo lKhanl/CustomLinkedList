@@ -3,7 +3,7 @@
 public class Person {
     private String personName;
     Person next;
-    private LinkedList likedSong = new LinkedList();
+    private LinkedList likedSongs = new LinkedList();
 
     public Person(String personName) {
         this.personName = personName;
@@ -22,8 +22,8 @@ public class Person {
             return null;
     }
 
-    public LinkedList getLikedSong() {
-        return likedSong;
+    public LinkedList getLikedSongs() {
+        return likedSongs;
     }
 
 

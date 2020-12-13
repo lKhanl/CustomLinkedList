@@ -56,13 +56,13 @@ public class LinkedList {
 
     public void deleteSong(String personName, String songName) {
         Person selectedPerson = searchPerson(personName);
-        Song temp = selectedPerson.getLikedSong().headS, prev = null;
+        Song temp = selectedPerson.getLikedSongs().headS, prev = null;
         if (temp == null) {
             System.out.println("There is no song in the list.");
             return;
         }
         if (temp.getSongName().equalsIgnoreCase(songName)) {
-            selectedPerson.getLikedSong().headS = null;
+            selectedPerson.getLikedSongs().headS = null;
             System.out.println("'" + selectedPerson.getPersonName() + "'" + " doesn’t like the song " + "'" + songName + "'" + " anymore.");
             return;
         }
@@ -104,7 +104,7 @@ public class LinkedList {
             System.out.println("The songs that registered people like : ");
             int numOfSongs = 1;
             while (currentPerson != null) {
-                Song currentSong = currentPerson.getLikedSong().headS;
+                Song currentSong = currentPerson.getLikedSongs().headS;
                 while (currentSong != null) {
                     allSongs.add(currentSong.getSongName());
                     currentSong = currentSong.next;
@@ -124,10 +124,10 @@ public class LinkedList {
     void printSong(String name) {
         Person currentPerson = searchPerson(name);
 
-        if (currentPerson.getLikedSong().headS == null)
+        if (currentPerson.getLikedSongs().headS == null)
             System.out.println("There is no song in the list.");
         else {
-            Song temp = currentPerson.getLikedSong().headS;
+            Song temp = currentPerson.getLikedSongs().headS;
             int numOfSong = 1;
             System.out.println("The liked songs for " + "'" + currentPerson + "' :");
             while (temp != null) {
@@ -143,7 +143,7 @@ public class LinkedList {
         Map<String, Integer> map = new HashMap<>();
         Person copyOfHead = headP;
         while (copyOfHead != null) {
-            Song currentSong = copyOfHead.getLikedSong().headS;
+            Song currentSong = copyOfHead.getLikedSongs().headS;
             while (currentSong != null) {
                 listOfAllSong.add(currentSong.getSongName());
                 currentSong = currentSong.next;
@@ -162,7 +162,35 @@ public class LinkedList {
                 Collections.replaceAll(listOfAllSong, listOfAllSong.get(i), " ");
             }
         }
-        printTopThree(map);
+        if (map.isEmpty())
+            System.out.println("There is no song is the environment.");
+        if (map.size() < 3) {
+
+            for (Map.Entry<String, Integer> iterator : map.entrySet()) {
+                System.out.println("The song " + "'" + iterator.getKey() + "'" + " is liked from " + iterator.getValue() + " people.");
+
+            }
+        } else {
+            map.size();
+            int max = 0;
+            int counter = 0;
+            String key = "";
+            while (counter < 3) {
+
+                for (Map.Entry<String, Integer> iterator : map.entrySet()) {
+                    if (iterator.getValue() > max) {
+                        max = iterator.getValue();
+                        key = iterator.getKey();
+                    }
+                }
+                System.out.println("The song " + "'" + key + "'" + " is liked from " + max + " people.");
+                map.remove(key);
+                max = 0;
+                counter++;
+
+            }
+        }
+
 
     }
 
