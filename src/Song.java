@@ -10,5 +10,5 @@ public class Song {
 
     public String getSongName() {
         return songName;
-    }
+    }// O(1)
 }

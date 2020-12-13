@@ -15,10 +15,10 @@ public class Person {
             return personName;
         else
             return null;
-    }
+    }// O(1)
 
     public LinkedList getLikedSongs() {
         return likedSongs;
-    }
+    }// O(1)
 }
 

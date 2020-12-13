@@ -27,7 +27,7 @@ public class LinkedList {
 
         }
         System.out.println("The person profile named " + "'" + personName + "'" + " is created.");
-    }
+    }// O(n)
 
     public void addSong(String songName) {
         if (searchSong(songName) != null) {
@@ -51,7 +51,7 @@ public class LinkedList {
             System.out.println("The song " + "'" + songName + "'" + " is added.");
         }
 
-    }
+    }// O(n)
 
     public void deleteSong(String personName, String songName) {
         if (searchPerson(personName) == null)
@@ -64,7 +64,8 @@ public class LinkedList {
                 return;
             }
             if (temp.getSongName().equalsIgnoreCase(songName)) {
-                selectedPerson.getLikedSongs().headS = null;
+                selectedPerson.getLikedSongs().headS = temp.next;
+
                 System.out.println("'" + selectedPerson.getPersonName() + "'" + " does not like the song " + "'" + songName + "'" + " anymore.");
                 return;
             }
@@ -73,14 +74,14 @@ public class LinkedList {
                     prev.next = temp.next;
                     System.out.println("'" + selectedPerson.getPersonName() + "'" + " does not like the song " + "'" + songName + "'" + " anymore.");
                     return;
-                } else
-                    System.out.println("The song is not in the list. ");
+                }
                 prev = temp;
                 temp = temp.next;
             }
+            System.out.println("The song is not in the list. ");
 
         }
-    }
+    }// O(n)
 
     public void printListAsPersonName() {
         if (headP == null)
@@ -94,7 +95,7 @@ public class LinkedList {
                 currentPerson = currentPerson.next;
             }
         }
-    }
+    }// O(n)
 
     public void printListAsSongName() {
         if (headP == null)
@@ -121,7 +122,7 @@ public class LinkedList {
 
 
         }
-    }
+    }// O(n^2)
 
     public void printSongsForPerson(String personName) {
         if (searchPerson(personName) == null)
@@ -142,7 +143,7 @@ public class LinkedList {
                 }
             }
         }
-    }
+    }// O(n)
 
     public void recSongs() {
         ArrayList<String> listOfAllSong = new ArrayList<>();
@@ -167,17 +168,27 @@ public class LinkedList {
                 map.put(listOfAllSong.get(i), counter);
                 Collections.replaceAll(listOfAllSong, listOfAllSong.get(i), " ");
             }
-        }
-        if (map.isEmpty())
-            System.out.println("There is no song is the environment.");
-        if (map.size() < 3) {
-
-            for (Map.Entry<String, Integer> iterator : map.entrySet()) {
+        }if (map.isEmpty())
+            System.out.println("There is no song in the environment.");
+        else if(map.size() == 1){
+            for (Map.Entry<String, Integer> iterator : map.entrySet())
                 System.out.println("The song " + "'" + iterator.getKey() + "'" + " is liked from " + iterator.getValue() + " people.");
 
+        } else if (map.size() == 2) {
+            String firstKey = "";
+            int max = 0;
+            for (Map.Entry<String, Integer> iterator : map.entrySet()) {
+                if (iterator.getValue() > max) {
+                    firstKey = iterator.getKey();
+                    max = iterator.getValue();
+                }
             }
-        } else {
-            map.size();
+            System.out.println("The song " + "'" + firstKey + "'" + " is liked from " + max + " people.");
+            map.remove(firstKey);
+            for (Map.Entry<String, Integer> iterator : map.entrySet())
+                System.out.println("The song " + "'" + iterator.getKey() + "'" + " is liked from " + iterator.getValue() + " people.");
+
+        }else {
             int max = 0;
             int counter = 0;
             String key = "";
@@ -196,9 +207,7 @@ public class LinkedList {
 
             }
         }
-
-
-    }
+    }// O(n^2)
 
     public Person searchPerson(String name) {
         Person temp = headP;
@@ -209,7 +218,7 @@ public class LinkedList {
             temp = temp.next;
         }
         return null;
-    }
+    }// O(n)
 
     public Song searchSong(String name) {
         Song temp = headS;
@@ -220,6 +229,6 @@ public class LinkedList {
             temp = temp.next;
         }
         return null;
-    }
+    }// O(n)
 }
 
