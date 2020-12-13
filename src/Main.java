@@ -53,7 +53,7 @@ public class Main {
                         System.out.println("You should enter a name.");
                     else {
                         name = listOfInput[1];
-                        list.printSong(name);
+                        list.printSongsForPerson(name);
                     }
                     break;
                 case "n":
@@ -80,8 +80,6 @@ public class Main {
                 default:
                     System.out.println("Invalid input. Please check the guidance. ");
             }
-
-
         }
     }
 }

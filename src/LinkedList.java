@@ -121,7 +121,7 @@ public class LinkedList {
         }
     }
 
-    void printSong(String name) {
+    public void printSongsForPerson(String name) {
         Person currentPerson = searchPerson(name);
 
         if (currentPerson.getLikedSongs().headS == null)
@@ -194,7 +194,7 @@ public class LinkedList {
 
     }
 
-    Person searchPerson(String name) {
+    public Person searchPerson(String name) {
         Person temp = headP;
         while (temp != null) {
             if (temp.getPersonName().equalsIgnoreCase(name)) {
@@ -205,7 +205,7 @@ public class LinkedList {
         return null;
     }
 
-    Song searchSong(String name) {
+    public Song searchSong(String name) {
         Song temp = headS;
         while (temp != null) {
             if (temp.getSongName().equalsIgnoreCase(name)) {
@@ -215,7 +215,5 @@ public class LinkedList {
         }
         return null;
     }
-
-
 }
 

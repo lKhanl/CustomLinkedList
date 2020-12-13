@@ -1,5 +1,4 @@
 
-
 public class Song {
     private String songName;
     Song next;
@@ -12,6 +11,4 @@ public class Song {
     public String getSongName() {
         return songName;
     }
-
-
 }

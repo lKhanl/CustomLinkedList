@@ -1,5 +1,4 @@
 
-
 public class Person {
     private String personName;
     Person next;
@@ -9,10 +8,6 @@ public class Person {
         this.personName = personName;
         this.next = null;
 
-    }
-
-    public void setPersonName(String personName) {
-        this.personName = personName;
     }
 
     public String getPersonName() {
@@ -25,7 +20,5 @@ public class Person {
     public LinkedList getLikedSongs() {
         return likedSongs;
     }
-
-
 }
 
